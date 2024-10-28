@@ -14,6 +14,7 @@ const Register = () => {
     avatar: null,
   });
 
+
   const handleChange = (e) => {
     const { name, value, files, type } = e.target;
     setFormData((prev) => ({
@@ -45,6 +46,8 @@ const Register = () => {
     console.log("data:", data);
     navigate("/login");
   };
+
+  
 
   if (error) {
     return <p>Error: {error.message}</p>;
