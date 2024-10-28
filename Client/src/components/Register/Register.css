@@ -1,0 +1,79 @@
+.register_Wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5; 
+    width: 60%;
+    height: auto;
+    padding: 2rem;
+    margin-top: 10rem;
+    margin-left: 18rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+    border-radius: 10px; 
+}
+
+.register_Title {
+    font-size: 24px;
+    margin-bottom: 1rem;
+    color: #333; 
+}
+
+.register_Content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%; 
+}
+
+.register_Input {
+    margin: 0.5rem 0; 
+    padding: 0.75rem; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    font-size: 16px; 
+    outline: none; 
+    transition: border-color 0.3s; 
+}
+
+.register_Input:focus {
+    border-color: #007BFF; 
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
+}
+
+.register_Input::placeholder {
+    color: #888; 
+    opacity: 1; 
+    font-style: italic; 
+}
+
+.register_Button {
+    padding: 0.75rem 1.5rem; 
+    background-color: #007BFF; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+    width: 21rem;
+}
+
+.register_Button:hover {
+    background-color: #0056b3; 
+}
+
+.register_Para {
+    margin-top: 1rem; 
+    font-size: 14px; 
+    color: #555; 
+}
+
+.register_Para a {
+    color: #007BFF; 
+    text-decoration: none; 
+}
+
+.register_Para a:hover {
+    text-decoration: underline; 
+}
