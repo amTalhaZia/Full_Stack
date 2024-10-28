@@ -24,7 +24,6 @@ export const AuthProvider = ({ children }) => {
   const registerUser = async (avatar, username, email, password) => {
     try {
       console.log("Registering user with data:", { avatar, username, email, password });
-  
       const response = await axios.post(
         "http://localhost:4000/api/v1/users/register",
         { avatar, username, email, password },

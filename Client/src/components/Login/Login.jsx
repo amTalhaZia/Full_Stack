@@ -29,11 +29,13 @@ const Login = () => {
         };
     }, [from]);
 
+
     const submitHandler = (e) => {
         e.preventDefault();
         login(debounce.username, debounce.password);
     };
 
+    // error checking
     // if (error) {
     //     return <p>Error: {error}</p>;
     // }
