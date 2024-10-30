@@ -1,19 +1,20 @@
+import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../store/AuthStore";
 import "./Register.css";
 import { useNavigate } from "react-router-dom";
+import { ClimbingBoxLoader } from "react-spinners";
 
 const Register = () => {
   const navigate = useNavigate();
-
-  const { registerUser, error } = useAuth();
+  const { registerUser, error, setError } = useAuth();
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
     avatar: null,
   });
-
+  const [laoding, setLaoding] = useState(false)
 
   const handleChange = (e) => {
     const { name, value, files, type } = e.target;
@@ -21,6 +22,7 @@ const Register = () => {
       ...prev,
       [name]: type === "file" ? files[0] : value,
     }));
+    setError(null); 
   };
 
   const [debounceData, setDebounceData] = useState(formData);
@@ -36,6 +38,7 @@ const Register = () => {
   }, [formData]);
 
   const submitHandler = async (e) => {
+    setLaoding(true)
     e.preventDefault();
     const data = await registerUser(
       debounceData.avatar,
@@ -43,16 +46,14 @@ const Register = () => {
       debounceData.email,
       debounceData.password
     );
-    console.log("data:", data);
-    navigate("/login");
+    console.log("Register:", data);
+    
+     setLaoding(false)
+    if (data && data.success) {
+      toast.success(data.message || "User Registered Successfully");
+      navigate("/login");
+    }
   };
-
-  
-
-  if (error) {
-    return <p>Error: {error.message}</p>;
-}
-
 
   return (
     <div className="register_Wrapper">
@@ -66,6 +67,7 @@ const Register = () => {
             className="register_Input"
             value={formData.username}
             onChange={handleChange}
+            required
           />
           <input
             type="email"
@@ -74,6 +76,7 @@ const Register = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
+            required
           />
           <input
             type="password"
@@ -82,6 +85,7 @@ const Register = () => {
             name="password"
             value={formData.password}
             onChange={handleChange}
+            required
           />
           <input
             type="file"
@@ -92,15 +96,20 @@ const Register = () => {
             required
           />
         </div>
-        <button className="register_Button" type="submit">
-          Register
+        <button className="register_Button" type="submit" >
+           Register
         </button>
       </form>
+      {laoding && (
+        <div className="loader-container">
+          <ClimbingBoxLoader color="#36d7b7" size={15} />
+          <p className="registering-tex" >Regestring........</p>
+        </div>
+      )}
+      {error && <p className="errorMessage">{error.message}</p>} 
       <p className="register_Para">
-        {" "}
         Already have an account? <a href="/login">Login here</a>
       </p>
-      {error && <p>{error}</p>}
     </div>
   );
 };

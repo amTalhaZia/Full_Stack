@@ -1,62 +1,88 @@
 .login_Wrapper {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #f5f5f5;
-    margin-top: 15rem;
-    margin-right: 30rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f4f8; 
+    width: 400px; 
+    padding: 2rem;
+    margin: 10rem auto; 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); 
+    border-radius: 12px; 
 }
 
 .login_title {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
+    font-size: 28px;
+    margin-bottom: 1.5rem;
+    color: #333; 
 }
 
 .login_Content {
     display: flex;
+    justify-content: center;
     flex-direction: column;
+    width: 100%; 
 }
 
-.login_Content input {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
+.login_Input {
+    margin: 0.75rem 0; 
+    padding: 0.75rem; 
+    border: 1px solid #ddd; 
+    border-radius: 6px; 
+    font-size: 16px; 
+    outline: none; 
+    transition: border-color 0.3s; 
+}
+
+.login_Input:focus {
+    border-color: #007BFF; 
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
+}
+
+.login_Input::placeholder {
+    color: #888; 
 }
 
 .login_button {
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    background-color: #007bff;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    width: 22rem;
-    transition: background-color 0.3s;
+    padding: 0.75rem 1.5rem; 
+    background-color: #007BFF; 
+    color: white; 
+    border: none; 
+    border-radius: 6px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+    width: 100%; 
 }
 
 .login_button:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; 
 }
 
 .login_para {
-    text-align: center;
-    margin-top: 15px;
-    font-size: 14px;
+    margin-top: 1rem; 
+    font-size: 14px; 
+    color: #555; 
 }
 
 .login_para a {
-    color: #007bff;
-    text-decoration: none;
+    color: #007BFF; 
+    text-decoration: none; 
 }
 
 .login_para a:hover {
-    text-decoration: underline;
+    text-decoration: underline; 
+}
+
+.errorMessage {
+    color: #d9534f; 
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 10px;
+    border: 1px solid #d9534f;
+    background-color: #f2dede; 
+    border-radius: 5px;
+    margin-top: 10px;
+    text-align: center;
+    width: 100%; 
 }

@@ -1,22 +1,22 @@
 import { useAuth } from "../../store/AuthStore";
+import { useNavigate } from "react-router-dom";
 
 
 const Logout = () => {
-    const {Logout, user} =  useAuth()
+  const { logOut } = useAuth()
+  const navigate = useNavigate()
 
-    const handleLogout = () => {
-        Logout()
-    }
-    
-    return (
-        <div>
-          {
-            user && (
-              <button onClick={handleLogout}>Logout</button>
-            )
-          }
-        </div>
-    )
+  const handleLogout = () => {
+    console.log(logOut)
+
+    navigate("/login")
+  }
+
+  return (
+    <div>
+          <button onClick={handleLogout}>Logout</button>
+    </div>
+  )
 }
 
-export {Logout}
+export { Logout }

@@ -1,44 +1,52 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../store/AuthStore";
+import { toast } from "react-toastify";
 import "./login.css";
+import { useNavigate } from "react-router-dom";
+
 
 const Login = () => {
-    const { login } = useAuth();
-    const [from, setFrom] = useState({
+    const { loginUser, error, setError } = useAuth();
+    const [form, setForm] = useState({
         username: "",
         password: "",
     });
 
+    const navigate = useNavigate();
+
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFrom((prev) => ({
+        setForm((prev) => ({
             ...prev,
             [name]: value
         }));
+        setError(null); 
     };
 
-    const [debounce, setDebounce] = useState(from);
+    const [debounce, setDebounce] = useState(form);
 
     useEffect(() => {
         const handler = setTimeout(() => {
-            setDebounce(from);
+            setDebounce(form);
         }, 500);
 
         return () => {
             clearTimeout(handler);
         };
-    }, [from]);
+    }, [form]);
 
-
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
-        login(debounce.username, debounce.password);
+        const data = await loginUser(debounce.username, debounce.password);
+        // console.log("data", data); // Log the data
+    
+  
+            if (data.success) {
+                toast.success(data.message || "Logged in successfully!");
+                navigate('/'); 
+            } 
     };
-
-    // error checking
-    // if (error) {
-    //     return <p>Error: {error}</p>;
-    // }
+    
 
     return (
         <div className="login_Wrapper">
@@ -49,20 +57,27 @@ const Login = () => {
                         type="text"
                         placeholder="User Name"
                         name="username"
-                        value={from.username}
+                        className="login_Input"
+                        value={form.username}
                         onChange={handleChange}
+                        required
                     />
                     <input
                         type="password"
                         placeholder="Password"
                         name="password"
-                        value={from.password}
+                        className="login_Input"
+                        value={form.password}
                         onChange={handleChange}
+                        required
                     />
                 </div>
                 <button type="submit" className="login_button">Login</button>
             </form>
-            <p className="login_para">Don’t have an account? <a href="/register">Register here</a></p>
+            {error && <p className="errorMessage">{error.message}</p>} 
+            <p className="login_para">
+                Don’t have an account? <a href="/register">Register here</a>
+            </p>
         </div>
     );
 };
