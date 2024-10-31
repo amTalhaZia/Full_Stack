@@ -1,29 +1,55 @@
-import { useContext, createContext,  useState } from 'react';
+import { useContext, createContext,  useState, useEffect } from 'react';
 import axios from 'axios';
 
 const ProductAuth = createContext();
 
 // eslint-disable-next-line react/prop-types
 export const ProductProvider = ({ children }) => {
-     const [product, setproduct] = useState('')
+    const [products, setProducts] = useState([]);
+     const [getAllProducts, setGetAllProducts] = useState([])
      const [error, setError] = useState(null)
 
-     const  createProduct = async (product)=> {
-          try {
-            const   respone =   await   axios.post("http://localhost:4000/api/v1/products/create",product,)
-            setproduct((prev)=>[...prev,  respone])
-            return  respone.data
-          } catch (error) {
-             setError(error.message)
-             console.log("Error creating", error)
-          }
-     }
+
+    
+     const createProduct = async (formData) => {
+        try {
+            const response = await axios.post('http://localhost:4000/api/v1/products/create', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            setProducts((prev) => [...prev, response.data]);
+            return response.data;
+        } catch (err) {
+            setError(err.response.data.message);
+            console.error(err);
+        }
+    };
+
+     useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get('http://localhost:4000/api/v1/products/allproducts');
+                setGetAllProducts(response.data);
+                console.log("All products", response.data);
+                return  response.data
+            } catch (error) {
+                console.log("Error while fetching all products");
+                setError(error.message);
+            }
+        };
+
+        fetchProducts(); 
+    }, []);
+
+
     return (
-        <ProductAuth.Provider value={{ createProduct, product, error}}>
+        <ProductAuth.Provider value={{ createProduct, products, error, getAllProducts}}>
             {children}
         </ProductAuth.Provider>
     );
 };
+
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const useProductAuth = () => {

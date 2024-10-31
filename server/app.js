@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(cors({ origin: '*' }));
 app.use(cookieParser({ origin: 'http://localhost:5173' }));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
+app.use('/public', express.static('public'));
 
 // routes
 app.use('/api/v1/users', router);
