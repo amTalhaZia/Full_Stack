@@ -7,6 +7,9 @@ const ProductAuth = createContext();
 export const ProductProvider = ({ children }) => {
     const [products, setProducts] = useState([]);
      const [getAllProducts, setGetAllProducts] = useState([])
+     const [fashion, setFashion] = useState([])
+     const [Sports, setSports] = useState([])
+
      const [error, setError] = useState(null)
 
 
@@ -22,20 +25,20 @@ export const ProductProvider = ({ children }) => {
             return response.data;
         } catch (err) {
             setError(err.response.data.message);
-            console.error(err);
+            console.error(err?.response.data.message);
         }
     };
 
      useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get('http://localhost:4000/api/v1/products/allproducts');
+                const response = await axios.get('http://localhost:4000/api/v1/products/electronic');
                 setGetAllProducts(response.data);
-                console.log("All products", response.data);
+                // console.log("All products", response.data);
                 return  response.data
             } catch (error) {
-                console.log("Error while fetching all products");
-                setError(error.message);
+                // console.log("Error while fetching all products");
+                setError(error.response.data.message);
             }
         };
 
@@ -43,8 +46,38 @@ export const ProductProvider = ({ children }) => {
     }, []);
 
 
+    useEffect(() => {
+        const fetchProduct = async () => {
+            try {
+                const response = await axios.get(`http://localhost:4000/api/v1/products/fashion`);
+                setFashion(response.data);
+                return response.data;
+            } catch (error) {
+                setError(error.response.data.message); 
+            }
+        };
+
+        fetchProduct(); 
+    }, []);
+
+
+    useEffect(()=> {
+        const fetchSportsProducts = async () => {
+            try {
+                const response = await axios.get(`http://localhost:4000/api/v1/products/Sports`);
+                setSports(response.data);
+                return response.data;
+            } catch (error) {
+                setError(error.response.data.message);
+            }
+        };
+        fetchSportsProducts();
+    })
+
+
+
     return (
-        <ProductAuth.Provider value={{ createProduct, products, error, getAllProducts}}>
+        <ProductAuth.Provider value={{ createProduct, products, error, getAllProducts, fashion, Sports}}>
             {children}
         </ProductAuth.Provider>
     );

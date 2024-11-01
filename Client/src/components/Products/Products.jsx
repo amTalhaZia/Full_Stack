@@ -4,7 +4,7 @@ import { useState } from "react";
 const Product = () => {
     const { createProduct } = useProductAuth();
 
-    const allowedCategories = ["Electronics", "Fashion", "Home", "Books", "Beauty", "Sports"]; 
+    const allowedCategories = ["Electronics", "Fashion", "Home", "Beauty", "Sports"]; 
 
     const [productData, setProductData] = useState({
         name: '',
@@ -34,8 +34,7 @@ const Product = () => {
             formData.append('brand', productData.brand);
             formData.append('category', productData.category);
             formData.append('image', productData.image); 
-            const response = await createProduct(formData)
-            console.log("Product created successfully:", response);
+            await createProduct(formData)
             
             setProductData({
                 name: '',

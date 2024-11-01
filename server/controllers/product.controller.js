@@ -2,32 +2,41 @@ import { Product } from "../models/product.models.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiErrors } from "../utils/apiErrors.js";
 import { ApiResponse } from "../utils/apiResponse.js";
+import { uploadCloudinary } from "../utils/Cloudanry.js";
+
 
 const productCreate = asyncHandler(async (req, res) => {
   const { name, description, title, brand, category, price } = req.body;
 
-  console.log("files", req.files)
+  // console.log("files", req.files);
+
+  const localPath = req.files?.image && req.files.image.length > 0 ? req.files.image[0].path : null;
+
+  if (!localPath) {
+      throw new ApiErrors(400, "Image is required for product creation.");
+  }
+
+  const imageUrl = await uploadCloudinary(localPath);
+
+  if (!imageUrl) {
+      throw new ApiErrors(500, "Failed to upload image to Cloudinary.");
+  }
 
   const product = new Product({
-    name,
-    description,
-    title,
-    brand,
-    category,
-    price,
-    image: req.files?.image && req.files.image.length > 0 ? req.files.image[0].path : null,
+      name,
+      description,
+      title,
+      brand,
+      category,
+      price,
+      image: imageUrl.url
   });
 
   console.log("Product to be saved:", product);
 
-  if (!product) {
-    throw new ApiErrors(400, "Product creation failed");
-  }
-
   await product.save();
-  res
-    .status(201)
-    .json(new ApiResponse(201, product, "Product created successfully"));
+
+  res.status(201).json(new ApiResponse(201, product, "Product created successfully"));
 });
 
 const getAllProducts = asyncHandler(async (req, res) => {

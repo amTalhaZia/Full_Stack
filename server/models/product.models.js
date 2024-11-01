@@ -6,9 +6,9 @@ const productSchema = new Schema(
       type: String,
       required: true,
     },
-    image: [{ // Ensure this is an array
+    image: [{ 
       type: String,
-      required: true, // Required field
+      required: true, 
     }],
     title: {
       type: String,
@@ -19,7 +19,7 @@ const productSchema = new Schema(
       required: true,
     },
     price: {
-      type: Number,
+      type: String,
       required: true,
     },
     brand: {
@@ -28,7 +28,7 @@ const productSchema = new Schema(
     },
     category: {
       type: String,
-      enum: ["Electronics", "Fashion", "Home", "Books", "Beauty", "Sports"],
+      enum: ["Electronics", "Fashion", "Home", "Beauty", "Sports"],
       required: true,
     },
   },

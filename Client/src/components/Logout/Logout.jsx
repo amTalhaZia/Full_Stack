@@ -1,22 +1,21 @@
 import { useAuth } from "../../store/AuthStore";
 import { useNavigate } from "react-router-dom";
-
+import './logout.css'; 
 
 const Logout = () => {
-  const { logOut } = useAuth()
-  const navigate = useNavigate()
+  const { logOut } = useAuth();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
-    console.log(logOut)
-
-    navigate("/login")
+    logOut();
+    navigate("/login");
   }
 
   return (
-    <div>
-          <button onClick={handleLogout}>Logout</button>
-    </div>
+    <button className="logout-button" onClick={handleLogout}>
+      Logout
+    </button>
   )
 }
 
-export { Logout }
+export default Logout;

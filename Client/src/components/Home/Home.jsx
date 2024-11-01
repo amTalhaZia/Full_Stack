@@ -1,27 +1,27 @@
-import { Logout } from '../Logout/Logout.jsx'
-import { useAuth } from '../../store/AuthStore.jsx'
-import Product from "../Products/Products.jsx"
-import AllProducts from '../AllProducts/AllProducts.jsx';
+// import { useAuth } from "../../store/AuthStore.jsx";
+// import Product from "../Products/Products.jsx"
+import AllProducts from "../AllProducts/AllProducts.jsx";
+import HeroSection from "../HeroSection/HeroSection.jsx";
+import Header from "../Header/Header.jsx";
 
 const Home = () => {
-  const { user } = useAuth();
+  // const { user } = useAuth();
 
   // console.log("user", user);
-
-
 
   return (
     <div>
       <header>
-        <Logout />
-        <h1>Welcome, {user.data.loggedInUser.username}!</h1>
+        {/* <Logout /> */}
+        <Header />
+        <HeroSection />
       </header>
       <section>
-        <Product/>
-         <AllProducts/>
+        {/* <Product/> */}
+        <AllProducts />
       </section>
     </div>
   );
-}
+};
 
 export default Home;

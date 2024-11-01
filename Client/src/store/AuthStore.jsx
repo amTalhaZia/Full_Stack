@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
       return response.data
     } catch (error) {
       // console.log("Error:", error);
-      setError(error.response?.data || error.message);
+      setError(error.response?.data );
     }
   };
 
@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }) => {
       return response.data;
     } catch (error) {
       // console.log("Error:", error);
-      setError(error.response?.data || error.message);
+      setError(error.response?.data );
       return undefined;
     }
   };
