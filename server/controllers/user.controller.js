@@ -43,7 +43,7 @@ const register = asyncHandler(async (req, res) => {
 
     const avatar =  await uploadCloudinary(localPath)
 
-    console.log(avatar)
+    // console.log(avatar)
     
 
     if (!avatar) {

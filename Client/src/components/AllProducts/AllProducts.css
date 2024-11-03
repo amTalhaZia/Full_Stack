@@ -71,3 +71,8 @@
     margin-bottom: 4rem; 
     text-align: center; 
 }
+
+
+.product-card{
+    text-decoration: none;
+}

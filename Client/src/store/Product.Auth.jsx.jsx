@@ -8,7 +8,7 @@ export const ProductProvider = ({ children }) => {
     const [products, setProducts] = useState([]);
      const [getAllProducts, setGetAllProducts] = useState([])
      const [fashion, setFashion] = useState([])
-     const [Sports, setSports] = useState([])
+     const [Sports, setSports] = useState('')
 
      const [error, setError] = useState(null)
 
@@ -72,7 +72,7 @@ export const ProductProvider = ({ children }) => {
             }
         };
         fetchSportsProducts();
-    })
+    },[])
 
 
 
