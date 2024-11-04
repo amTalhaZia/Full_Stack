@@ -4,16 +4,16 @@ import { dbConnect } from "./db/db.js";
 
 dotenv.config();
 
-const Port = process.env.PORT || 3000;
+const Port = process.env.PORT || 4000;
 
-dbConnect() 
+dbConnect()
   .then(() => {
     app.listen(Port, () => {
       console.log(`Server is running on port ${Port}`);
     });
   })
   .catch((err) => {
-    console.log(err);
+    console.error("Database connection failed:", err);
     process.exit(1);
   });
 
