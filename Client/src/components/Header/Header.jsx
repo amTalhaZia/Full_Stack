@@ -39,10 +39,10 @@ const Header = () => {
                 <FontAwesomeIcon className='store-icon' icon={faStore} />
                 <h1 className='title'>Shopping Cart</h1>
             </div>
-            <div className="search-section">
+            {/* <div className="search-section">
                 <input type="text" className='search-input' placeholder="Search..." />
                 <FontAwesomeIcon className='search-icon' icon={faSearch} />
-            </div>
+            </div> */}
             <div className="dropdown-container">
                 <select className='dropdown' name="product" value={select} onChange={handleChange} id="product">
                     <option value='home'>Home</option>
