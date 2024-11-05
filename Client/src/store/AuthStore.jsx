@@ -7,20 +7,23 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
-
-
   const loginUser = async (username, password) => {
     try {
-      const response = await axios.post("http://localhost:4000/api/v1/users/login", { username, password });
-      setUser(response.data);
-      // console.log(response);
+        const response = await axios.post("http://localhost:4000/api/v1/users/login", { username, password });
 
-      return response.data
+        // console.log("Full API Response:", response.data);
+        const { accessToken } = response.data.data;
+        // console.log("Access Token:", accessToken);
+        localStorage.setItem('accessToken', accessToken);
+        setUser(response.data);
+
+        return response.data;
     } catch (error) {
-      // console.log("Error:", error);
-      setError(error.response?.data );
+        console.error("Error during login:", error);
+        setError(error.response?.data);
     }
-  };
+};
+
 
 
   const registerUser = async (avatar, username, email, password) => {

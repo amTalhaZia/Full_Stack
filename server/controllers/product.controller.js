@@ -96,6 +96,16 @@ const getSportsProduct = asyncHandler(async (req, res) => {
     new ApiResponse(200, product, "Sports product fetched successfully")
   );
 });
+
+const deleteProduct =  asyncHandler(async(req, res)=> {
+  const  product = await Product.findById(req.params.id)
+  if(!product){
+    throw new ApiErrors(404, 'Product not found')
+  }
+  await product.deleteOne({_id: product})
+  res.json(new ApiResponse(200, null, 'Product deleted successfully'))
+})
+
 export {
   productCreate,
   getAllProducts,
@@ -104,4 +114,5 @@ export {
   getBeautyProduct,
   getSportsProduct,
   getFashionProduct,
+  deleteProduct
 };

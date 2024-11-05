@@ -10,7 +10,7 @@ const Header = () => {
     const navigate = useNavigate();
     const [select, setSelect] = useState('');
     const { user } = useAuth()
-    console.log('Admin', user)
+    // console.log('Admin', user)
 
 
     const handleChange = (e) => {

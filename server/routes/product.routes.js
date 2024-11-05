@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { productCreate } from "../controllers/product.controller.js";
-import { getAllProducts, getElectronicProduct, getBookProduct, getBeautyProduct, getSportsProduct, getFashionProduct} from "../controllers/product.controller.js";
+import { getAllProducts, getElectronicProduct, getBookProduct, getBeautyProduct, getSportsProduct, getFashionProduct,deleteProduct} from "../controllers/product.controller.js";
 import { upload } from "../middleware/multer.middlware.js";
 import { verifyJwt } from "../middleware/auth.middleware.js";
 import { isAdmin } from "../middleware/isAdmin.js";
@@ -25,6 +25,7 @@ productRouter.route("/books").get(getBookProduct);
 productRouter.route("/beauty").get(getBeautyProduct);
 productRouter.route("/sports").get(getSportsProduct);
 productRouter.route("/fashion").get(getFashionProduct);
+productRouter.route('/delete/:id').delete(deleteProduct);
 
 
 // Admin  routes

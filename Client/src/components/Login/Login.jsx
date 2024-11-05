@@ -38,7 +38,7 @@ const Login = () => {
     const submitHandler = async (e) => {
         e.preventDefault();
         const data = await loginUser(debounce.username, debounce.password);
-        console.log("data", data);
+        // console.log("data", data);
     
   
             if (data.success) {

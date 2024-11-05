@@ -13,21 +13,26 @@ export const ProductProvider = ({ children }) => {
      const [error, setError] = useState(null)
 
 
-    
      const createProduct = async (formData) => {
+        const token = localStorage.getItem('accessToken');
+        // console.log("Access Token:", token);
         try {
-            const response = await axios.post('http://localhost:4000/api/v1/users/create-admin', formData, {
+            const response = await axios.post('http://localhost:4000/api/v1/products/create', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    'Authorization': `Bearer ${token}`,
                 },
             });
+            
             setProducts((prev) => [...prev, response.data]);
             return response.data;
         } catch (err) {
-            setError(err.response.data.message);
-            console.error(err?.response.data.message);
+            setError(err.response?.data?.message || 'Error creating product');
+            console.error(err.response?.data?.message);
         }
     };
+    
+    
 
      useEffect(() => {
         const fetchProducts = async () => {
