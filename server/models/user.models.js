@@ -24,6 +24,11 @@ const userSchema = new Schema(
       type: String,
       default: null,
     },
+    role: { 
+      type: String,
+      enum: ["user", "admin"],
+      default: "user"
+    },
   },
   { timestamps: true }
 );
@@ -48,6 +53,7 @@ userSchema.methods.generateAccessToken  = async function () {
       _id: this._id,
       username: this.username,
       email: this.email,
+      role: this.role
     },
     process.env.ACCESS_TOKEN_SECRET,
     {

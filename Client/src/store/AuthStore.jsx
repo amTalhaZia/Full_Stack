@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
 
   const registerUser = async (avatar, username, email, password) => {
     try {
-      console.log("Registering user with data:", { avatar, username, email, password });
+      // console.log("Registering user with data:", { avatar, username, email, password });
 
       const formData = new FormData();
       formData.append("avatar", avatar);
@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }) => {
 
 
   const logOut = async () => {
-    console.log("Logging out...");
+    // console.log("Logging out...");
     try {
         const response = await axios.post("http://localhost:4000/api/v1/users/logout");
         // console.log("Logout API response:", response); 

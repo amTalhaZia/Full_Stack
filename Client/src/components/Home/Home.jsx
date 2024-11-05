@@ -3,11 +3,14 @@
 import AllProducts from "../AllProducts/AllProducts.jsx";
 import HeroSection from "../HeroSection/HeroSection.jsx";
 import Header from "../Header/Header.jsx";
+// import { useAdminAuth } from "../../store/AdminRoute.jsx";
 
 const Home = () => {
   // const { user } = useAuth();
 
   // console.log("user", user);
+
+  // const {user} =  useAdminAuth()
 
   return (
     <div>
@@ -17,7 +20,7 @@ const Home = () => {
         <HeroSection />
       </header>
       <section>
-        {/* <Product/> */}
+        
         <AllProducts />
       </section>
     </div>

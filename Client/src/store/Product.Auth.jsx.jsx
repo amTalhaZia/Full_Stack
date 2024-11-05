@@ -16,7 +16,7 @@ export const ProductProvider = ({ children }) => {
     
      const createProduct = async (formData) => {
         try {
-            const response = await axios.post('http://localhost:4000/api/v1/products/create', formData, {
+            const response = await axios.post('http://localhost:4000/api/v1/users/create-admin', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

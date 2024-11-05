@@ -4,7 +4,7 @@ import { dbConnect } from "./db/db.js";
 
 dotenv.config();
 
-const Port = process.env.PORT || 4000;
+const Port = process.env.PORT || 5000;
 
 dbConnect()
   .then(() => {
@@ -17,4 +17,3 @@ dbConnect()
     process.exit(1);
   });
 
-export { app };

@@ -11,6 +11,8 @@ import BeautyProduct from "./components/Category/BeautyProduct/BeautyProduct.jsx
 import SportProduct from "./components/Category/SportProduct/SportProduct.jsx"
 import ElectronicProduct from "./components/Category/ElectronicProduct/ElectronicProduct.jsx"
 import FashionProduct from "./components/Category/FashionProduct/FashionProduct.jsx"
+import AdminRegister from "./Admin_registration/Admin.registration.jsx"
+import Product  from  '../src/components/Products/Products.jsx'
 
 const App = () => {
   return (
@@ -25,6 +27,8 @@ const App = () => {
         <Route  path="/Sportproduct"  element={<SportProduct/>} />
         <Route  path="/electronicproduct"  element={<ElectronicProduct/>} />
         <Route  path="/fashionproduct"  element={<FashionProduct/>} />
+        <Route exact path="/adminregisterpanel" element={<AdminRegister />} />
+        <Route  path="/create-products"  element={<Product/>} />
 
 
 

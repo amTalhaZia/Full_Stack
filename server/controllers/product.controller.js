@@ -32,7 +32,7 @@ const productCreate = asyncHandler(async (req, res) => {
       image: imageUrl.url
   });
 
-  console.log("Product to be saved:", product);
+  // console.log("Product to be saved:", product);
 
   await product.save();
 

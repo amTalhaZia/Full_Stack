@@ -1,15 +1,17 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStore, faSearch } from '@fortawesome/free-solid-svg-icons';
 import './header.css';
-import { useAuth } from "../../store/AuthStore";
 import Logout from "../Logout/Logout.jsx";
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-
+import { Link } from 'react-router-dom';
+import { useAuth } from '../../store/AuthStore.jsx';
 const Header = () => {
-    const { user } = useAuth();
     const navigate = useNavigate();
     const [select, setSelect] = useState('');
+    const { user } = useAuth()
+    console.log('Admin', user)
+
 
     const handleChange = (e) => {
         const value = e.target.value;
@@ -26,7 +28,7 @@ const Header = () => {
                 navigate("./sportproduct");
                 break;
             case 'fashion':
-                navigate("./fashionproduct"); 
+                navigate("./fashionproduct");
                 break;
         }
     };
@@ -50,10 +52,18 @@ const Header = () => {
                     <option value='electronic'>Electronics</option>
                 </select>
             </div>
+
             <div className='user-section'>
+                {
+                    user?.data?.loggedInUser?.role === "admin" && (
+                        <div className='admin-section'>
+                            <Link to='/create-products'>Admin Dashboard</Link>
+                        </div>
+                    )
+                }
                 <Logout />
                 <div className='username-container'>
-                    <p className='username'>{user?.data?.loggedInUser?.username || 'Guest'}</p>
+                    <p className='username'>{user?.data?.loggedInUser?.username}</p>
                 </div>
             </div>
         </div>
