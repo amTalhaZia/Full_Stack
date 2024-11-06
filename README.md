@@ -1,5 +1,5 @@
 <h2> key   feature   of  mern  App</h2>
-
+<h4> jwt verify</h4>
 <h4> Cloudinary for  images</h4>
 <h4>Register and  Login  </h4>
 <h4> Admin Panel </h4>
